@@ -9,7 +9,6 @@
   "author": "HikaruFN",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^3.1.3",
     "slugify": "^1.6.6"
   }
 }
