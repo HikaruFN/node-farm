@@ -14,6 +14,9 @@ const tempCard = fs.readFileSync('./template-card.html','utf-8')
 const data = fs.readFileSync('./data.json','utf-8');
 const dataObject = JSON.parse(data)
 
+//Slugs
+const slugs = dataObject.map((el)=> slugify(el.productName, {lower:true}))
+
 //Server
 //Create Server
 const server = http.createServer((request, response) => { 
@@ -21,9 +24,9 @@ const server = http.createServer((request, response) => {
     const {pathname, query} = url.parse(request.url, true) //true? trasforma la query in un oggetto {pathname, query} crea della variabili con gli stessi valori degli elementi con nome corrispondenti
 
     if ( pathname === '/' || pathname === '/overview' ) {
-            const cardsHtml = dataObject.map( el => replaceTemplate(tempCard,el)).join('') //join() concatena gli elementi del nuovo array in un'unica stringa
-            const output = tempOverview.replace(/{%PRODUCT_CARDS%}/g, cardsHtml)
-            response.end(output)
+        const cardsHtml = dataObject.map( el => replaceTemplate(tempCard,el)).join('') //join() concatena gli elementi del nuovo array in un'unica stringa
+        const output = tempOverview.replace(/{%PRODUCT_CARDS%}/g, cardsHtml)
+        response.end(output)
 
     }else if( pathname === '/product' ){
         response.end(tempProduct)
