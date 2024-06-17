@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "HikaruFN",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.3",
+    "slugify": "^1.6.6"
+  }
 }
